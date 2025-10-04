@@ -58,12 +58,13 @@ body {
     animation: bounce 1.5s infinite;
 }
 
-/* Petits boutons discrets à droite */
+/* Petits boutons discrets à droite - alignés verticalement */
 .control-buttons {
     position: absolute;
     top: 10px;
     right: 10px;
     display: flex;
+    flex-direction: column;
     gap: 8px;
 }
 
@@ -213,6 +214,31 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+/* Ligne Clear + Nouvelle partie */
+.betting-row-clear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.btn-bet-clear {
+    flex: 0 0 auto;
+}
+
+.btn-new-game {
+    position: absolute;
+    right: 0;
+    padding: 11px 20px !important;
+    font-size: 0.85em !important;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .message {

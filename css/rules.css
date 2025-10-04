@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.rules-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #ff6b00;
+}
+
+h1 {
+    color: #1e3c72;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rule-section {
+    background: rgba(255, 255, 255, 0.8);
+    border-left: 5px solid #ff6b00;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rule-section h2 {
+    color: #1e3c72;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.rule-section p {
+    color: #333;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.rule-section ul,
+.rule-section ol {
+    margin-left: 25px;
+    color: #333;
+    font-size: 1.05em;
+    line-height: 1.8;
+}
+
+.rule-section li {
+    margin-bottom: 10px;
+}
+
+.rule-section ul li {
+    list-style-type: disc;
+}
+
+.rule-section ol li {
+    list-style-type: decimal;
+}
+
+.rule-section strong {
+    color: #ff6b00;
+    font-weight: bold;
+}
+
+.tips {
+    background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+    border-left: 5px solid #ffd700;
+}
+
+.tips h2 {
+    color: #ff8c00;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px solid #ff6b00;
+}
+
+.btn-close {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ff6b00, #ffd700, #ff4500, #ff8c00);
+    background-size: 400% 400%;
+    animation: gradientAnimation 3s ease infinite;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.btn-close:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn-close:active {
+    transform: translateY(0);
+}
+
+/* Scrollbar personnalisée */
+.rules-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.rules-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.rules-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff6b00, #ff8c00);
+    border-radius: 10px;
+}
+
+.rules-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff8c00, #ffd700);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .rules-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .rule-section h2 {
+        font-size: 1.4em;
+    }
+
+    .rule-section p,
+    .rule-section ul,
+    .rule-section ol {
+        font-size: 1em;
+    }
+
+    .btn-close {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+}

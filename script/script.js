@@ -54,6 +54,11 @@ function toggleFullscreen() {
     }
 }
 
+// Ouvrir la page des règles
+function openRules() {
+    window.open('rules.html', '_blank');
+}
+
 // Éléments DOM
 const playerCardsDiv = document.getElementById('player-cards');
 const dealerCardsDiv = document.getElementById('dealer-cards');
@@ -74,6 +79,7 @@ const bet200Btn = document.getElementById('bet-200');
 const clearBetBtn = document.getElementById('clear-bet');
 const muteBtn = document.getElementById('mute-btn');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
+const rulesBtn = document.getElementById('rules-btn');
 
 // Événements
 hitBtn.addEventListener('click', hit);
@@ -88,6 +94,7 @@ bet200Btn.addEventListener('click', () => { playWelcomeSound(); placeBet(200); }
 clearBetBtn.addEventListener('click', clearBet);
 muteBtn.addEventListener('click', toggleMute);
 fullscreenBtn.addEventListener('click', toggleFullscreen);
+rulesBtn.addEventListener('click', openRules);
 
 // Initialiser le jeu
 initGame();

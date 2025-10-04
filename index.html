@@ -11,8 +11,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="Assets/icon/favicon-16x16.png" />
   <link rel="manifest" href="manifest/site.webmanifest" />
 
-  <!-- Feuille de style -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
@@ -28,6 +28,9 @@
         </button>
         <button id="fullscreen-btn" class="btn-control" title="Plein écran">
           <span>⛶</span>
+        </button>
+        <button id="rules-btn" class="btn-control" title="Règles du jeu">
+          <span>📋</span>
         </button>
       </div>
     </div>
@@ -64,9 +67,12 @@
               <button id="bet-100" class="btn btn-bet">100</button>
               <button id="bet-200" class="btn btn-bet">200</button>
             </div>
-            <div class="betting-row">
+            <div class="betting-row betting-row-clear">
               <button id="clear-bet" class="btn btn-bet-clear">
                 <span style="font-size: 1.2em;">Clear 💫</span>
+              </button>
+              <button id="new-game-btn" class="btn btn-secondary btn-new-game">
+                <span style="font-size: 1.0em;">New<br>game 🔄</span>
               </button>
             </div>
           </div>
@@ -78,7 +84,6 @@
           <button id="deal-btn" class="btn btn-primary">Distribuer</button>
           <button id="hit-btn" class="btn btn-primary">Tire une carte</button>
           <button id="stand-btn" class="btn btn-primary">Rester</button>
-          <button id="new-game-btn" class="btn btn-secondary">Nouvelle partie</button>
         </div>
       </div>
     </div>
