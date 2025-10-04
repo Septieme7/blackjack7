@@ -11,7 +11,7 @@ Petit projet personnel de jeu de **BlackJack** réalisé en **HTML, CSS et JavaS
 - Responsive design
 
 ## 🌐 Démo
-👉 [Jouer en ligne ici](https://<https://github.com/Septieme7/blackjack7.git/)
+👉 [Jouer en ligne ici](https://<https://septieme7.github.io/blackjack7/)
 
 ---
 
