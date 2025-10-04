@@ -11,13 +11,13 @@ let firstInteraction = true;
 
 // Sons
 const sounds = {
-    cardFlip: new Audio('/Assets/sounds/card-flip.mp3'),
-    win: new Audio('/Assets/sounds/win.mp3'),
-    lose: new Audio('/Assets/sounds/lose.mp3'),
-    deal: new Audio('/Assets/sounds/deal.mp3'),
-    chip: new Audio('/Assets/sounds/chip.mp3'),
-    tie: new Audio('/Assets/sounds/tie.mp3'),
-    welcome: new Audio('/Assets/sounds/welcome.mp3')
+    cardFlip: new Audio('Assets/sounds/card-flip.mp3'),
+    win: new Audio('Assets/sounds/win.mp3'),
+    lose: new Audio('Assets/sounds/lose.mp3'),
+    deal: new Audio('Assets/sounds/deal.mp3'),
+    chip: new Audio('Assets/sounds/chip.mp3'),
+    tie: new Audio('Assets/sounds/tie.mp3'),
+    welcome: new Audio('Assets/sounds/welcome.mp3')
 };
 
 // Fonction pour jouer un son
@@ -107,7 +107,7 @@ function placeBet(amount) {
         messageDiv.textContent = 'Partie en cours ! Termine d\'abord.';
         return;
     }
-    
+
     if (tokens >= amount) {
         tokens -= amount;
         currentBet += amount;
@@ -124,7 +124,7 @@ function clearBet() {
         messageDiv.textContent = 'Partie en cours ! Termine d\'abord. respire un coup';
         return;
     }
-    
+
     tokens += currentBet;
     currentBet = 0;
     updateTokensDisplay();
@@ -146,18 +146,18 @@ function createDeck() {
         { name: 'spades', folder: 'spades' }
     ];
     const deck = [];
-    
+
     for (let suit of suits) {
         for (let value of values) {
             deck.push({
                 value: value,
                 suit: suit.name,
-                imagePath: `/Assets/images/cards/${suit.folder}/${value}.svg`,
+                imagePath: `Assets/images/cards/${suit.folder}/${value}.svg`,
                 numericValue: getNumericValue(value)
             });
         }
     }
-    
+
     return shuffleDeck(deck);
 }
 
@@ -181,30 +181,30 @@ function shuffleDeck(deck) {
 function displayCard(card, container, hidden = false) {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card-svg-container';
-    
+
     const img = document.createElement('img');
-    
+
     if (hidden) {
-        img.src = '/Assets/images/cards/back.svg';
+        img.src = 'Assets/images/cards/back.svg';
         img.alt = 'Dos de carte';
     } else {
         img.src = card.imagePath;
         img.alt = `${card.value} de ${card.suit}`;
     }
-    
+
     img.style.width = '150px';
     img.style.height = '217px';
-    
+
     // Animation slide
     cardDiv.style.opacity = '0';
     cardDiv.style.transform = 'translateY(50px)';
     cardDiv.style.transition = 'all 0.4s ease-out';
-    
+
     cardDiv.appendChild(img);
     container.appendChild(cardDiv);
-    
+
     cardDiv.offsetHeight;
-    
+
     requestAnimationFrame(() => {
         cardDiv.style.opacity = '1';
         cardDiv.style.transform = 'translateY(0)';
@@ -215,17 +215,17 @@ function displayCard(card, container, hidden = false) {
 function calculateScore(hand) {
     let score = 0;
     let aces = 0;
-    
+
     for (let card of hand) {
         score += card.numericValue;
         if (card.value === 'A') aces++;
     }
-    
+
     while (score > 21 && aces > 0) {
         score -= 10;
         aces--;
     }
-    
+
     return score;
 }
 
@@ -236,12 +236,12 @@ function displayHands(hideDealerCard = true) {
         displayCard(card, playerCardsDiv);
     }
     playerScoreSpan.textContent = calculateScore(playerHand);
-    
+
     dealerCardsDiv.innerHTML = '';
     for (let i = 0; i < dealerHand.length; i++) {
         displayCard(dealerHand[i], dealerCardsDiv, hideDealerCard && i === 0);
     }
-    
+
     if (hideDealerCard && dealerHand.length > 0) {
         dealerScoreSpan.textContent = dealerHand[1] ? calculateScore([dealerHand[1]]) : '?';
     } else {
@@ -255,58 +255,58 @@ function dealCards() {
         messageDiv.innerHTML = 'Place d\'abord une mise ! <span style="font-size: 1.8em;">💰</span>';
         return;
     }
-    
+
     if (gameStarted) {
         messageDiv.innerHTML = 'Partie déjà en cours ! <span style="font-size: 1.8em;">🎲</span>';
         return;
     }
-    
+
     deck = createDeck();
     playerHand = [];
     dealerHand = [];
     gameOver = false;
     gameStarted = true;
-    
+
     playSound('deal');
-    
+
     messageDiv.innerHTML = 'BON chance !!! l\'ami <span style="font-size: 1.8em;">🎰</span>';
     messageDiv.className = 'message';
-    
+
     // Distribution avec délai pour l'animation
     setTimeout(() => {
         playerHand.push(deck.pop());
         displayHands(true);
         playSound('cardFlip');
     }, 100);
-    
+
     setTimeout(() => {
         dealerHand.push(deck.pop());
         displayHands(true);
         playSound('cardFlip');
     }, 300);
-    
+
     setTimeout(() => {
         playerHand.push(deck.pop());
         displayHands(true);
         playSound('cardFlip');
     }, 500);
-    
+
     setTimeout(() => {
         dealerHand.push(deck.pop());
         displayHands(true);
         playSound('cardFlip');
-        
+
         hitBtn.disabled = false;
         standBtn.disabled = false;
         dealBtn.disabled = true;
-        
+
         bet10Btn.disabled = true;
         bet20Btn.disabled = true;
         bet50Btn.disabled = true;
         bet100Btn.disabled = true;
         bet200Btn.disabled = true;
         clearBetBtn.disabled = true;
-        
+
         if (calculateScore(playerHand) === 21) {
             endGame();
         }
@@ -316,13 +316,13 @@ function dealCards() {
 // Tirer une carte
 function hit() {
     if (gameOver) return;
-    
+
     playerHand.push(deck.pop());
     playSound('cardFlip');
     displayHands(true);
-    
+
     const playerScore = calculateScore(playerHand);
-    
+
     if (playerScore > 21) {
         playSound('lose');
         messageDiv.innerHTML = 'BUSTÉ ! T as perdu ! <span style="font-size: 2em;">💥😢</span>';
@@ -336,13 +336,13 @@ function hit() {
 // Rester
 function stand() {
     if (gameOver) return;
-    
+
     gameOver = true;
-    
+
     // Révéler la carte cachée du croupier
     displayHands(false);
     playSound('cardFlip');
-    
+
     // Le croupier tire avec un délai
     let dealerDrawDelay = 800;
     const dealerDrawInterval = setInterval(() => {
@@ -355,7 +355,7 @@ function stand() {
             determineWinner();
         }
     }, dealerDrawDelay);
-    
+
     // Si le croupier n'a pas besoin de tirer
     if (calculateScore(dealerHand) >= 17) {
         clearInterval(dealerDrawInterval);
@@ -367,7 +367,7 @@ function stand() {
 function determineWinner() {
     const playerScore = calculateScore(playerHand);
     const dealerScore = calculateScore(dealerHand);
-    
+
     if (dealerScore > 21) {
         playSound('win');
         messageDiv.innerHTML = 'Le croupier a busté ! C gagné ! <span style="font-size: 2em;">🎉💰</span>';
@@ -388,7 +388,7 @@ function determineWinner() {
         messageDiv.className = 'message tie';
         tokens += currentBet;
     }
-    
+
     updateTokensDisplay();
     endGame();
 }
@@ -401,17 +401,17 @@ function endGame() {
     standBtn.disabled = true;
     dealBtn.disabled = false;
     displayHands(false);
-    
+
     bet10Btn.disabled = false;
     bet20Btn.disabled = false;
     bet50Btn.disabled = false;
     bet100Btn.disabled = false;
     bet200Btn.disabled = false;
     clearBetBtn.disabled = false;
-    
+
     currentBet = 0;
     updateTokensDisplay();
-    
+
     if (tokens === 0) {
         messageDiv.innerHTML = 'Plus de jetons ! Clique sur Nouvelle partie ! C toujours pas la FDJ ici... <span style="font-size: 1.8em;">😢</span>';
     }
@@ -425,21 +425,21 @@ function resetGame() {
     gameOver = false;
     playerHand = [];
     dealerHand = [];
-    
+
     playerCardsDiv.innerHTML = '';
     dealerCardsDiv.innerHTML = '';
     playerScoreSpan.textContent = '0';
     dealerScoreSpan.textContent = '0';
-    
+
     updateTokensDisplay();
-    
+
     messageDiv.innerHTML = 'Place ta mise pour commencer ! <span style="font-size: 1.8em;">💰</span>';
     messageDiv.className = 'message';
-    
+
     hitBtn.disabled = true;
     standBtn.disabled = true;
     dealBtn.disabled = false;
-    
+
     bet10Btn.disabled = false;
     bet20Btn.disabled = false;
     bet50Btn.disabled = false;
