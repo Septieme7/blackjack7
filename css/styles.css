@@ -1,0 +1,516 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+    overflow: auto;
+}
+
+.container {
+    background-image: url('/Assets/images/BackgroundBJ2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+/* === HEADER (Logo + boutons discrets) === */
+.header-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    background: rgba(255, 255, 255, 0.298);    
+    max-width: 320px;
+    height: auto;
+    border-radius: 15px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.symbols {
+    font-size: 2rem;
+    margin-top: 10px;
+    animation: bounce 1.5s infinite;
+}
+
+/* Petits boutons discrets à droite */
+.control-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.btn-control {
+    padding: 6px 10px;
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.352);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-control:hover {
+    background: rgba(255, 255, 255, 0.568);
+    transform: scale(1.09);
+}
+
+.btn-control span {
+    display: inline-block;
+    line-height: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* === Mise en page principale === */
+.game-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.game-area {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.player-section {
+    background: rgba(255, 255, 255, 0.501);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #dee2e6;
+}
+
+.player-section h2 {
+    color: #463533;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 200px;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-svg-container {
+    display: inline-block;
+    transition: transform 0.2s;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.card-svg-container:hover {
+    transform: translateY(-5px);
+}
+
+.card-svg-container img { 
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.score {
+    border-radius: 10px;
+    border: 2px solid #dee2e6;
+    background: rgba(255, 255, 255, 0.6);
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+}
+
+.score span {
+    color: #333831;
+    font-size: 1.3em;
+}
+
+
+/* Système de mise */
+.betting-section {
+    background: #f8f9fa7c;
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #dee2e6;
+}
+
+.tokens-display {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.tokens-display h3 {
+    color: #5e4a44;
+    font-size: 1.5em;
+    margin-bottom: 8px;
+}
+
+.bet-info {
+    color: #5e4a44;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.bet-info span {
+    color: #ff6b00;
+    font-size: 1.2em;
+}
+
+.betting-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.betting-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.message {
+    position: relative;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 0;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #dee2e6;
+    background: #f8f9fa7a;
+    line-height: 1.5;
+}
+
+.message.win {
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background: #f8f9fa7a;
+    animation: textGradient 5s ease infinite;
+    font-weight: bold;
+}
+
+.message.lose {
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background: #f8f9fa7a;
+    animation: textGradient 5s ease infinite;
+    font-weight: bold;
+}
+
+.message.tie {    
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background: #f8f9fa7a;
+    animation: textGradient 5s ease infinite;
+    font-weight: bold;
+}
+
+@keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(45deg, #ff6b00, #ffd700, #ff4500, #ff8c00);
+    background-size: 400% 400%;
+    animation: gradientAnimation 3s ease infinite;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b00, #ffd700, #ff4500, #ff8c00);
+    background-size: 400% 400%;
+    animation: gradientAnimation 7s ease infinite;
+    color: #000;
+}
+
+.btn-primary:hover {
+    animation: gradientAnimation 7s ease infinite;
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #ff4500, #ff8c00, #ffd700, #ff6b00);
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s ease infinite;
+    color: #000;
+}
+
+.btn-secondary:hover {
+    animation: gradientAnimation 3s ease infinite;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    transform: none;
+}
+
+/* === LOGO GIF BLACKJACK === */
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo img {
+    background: rgba(255, 255, 255, 0.298);    
+    max-width: 320px;
+    height: auto;
+    border-radius: 15px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.symbols {
+    font-size: 2rem;
+    margin-top: 10px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+@media (max-width: 915px) and (max-height: 412px), (max-width: 915px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        padding: 10px;
+        max-height: 98vh;
+    }
+    
+    h1 {
+        font-size: 1.3em;
+        margin-bottom: 8px;
+    }
+    
+    .game-layout {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .game-area {
+        flex: 1;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .player-section {
+        flex: 1;
+        padding: 8px;
+        margin-bottom: 0;
+    }
+    
+    .player-section h2 {
+        font-size: 0.95em;
+        margin-bottom: 5px;
+    }
+    
+    .cards-container {
+        min-height: 120px;
+        gap: 5px;
+    }
+    
+    .card-svg-container svg {
+        width: 75px;
+        height: 108px;
+    }
+    
+    .score {
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+    
+    .score span {
+        font-size: 1.1em;
+    }
+    
+    .sidebar {
+        width: 220px;
+    }
+    
+    .betting-section {
+        padding: 8px;
+    }
+    
+    .tokens-display h3 {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+    
+    .bet-info {
+        font-size: 0.85em;
+    }
+    
+    .bet-info span {
+        font-size: 1em;
+    }
+    
+    .betting-row {
+        gap: 5px;
+    }
+    
+    .btn-bet {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+    
+    .btn-bet-clear {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+    
+    .message {
+        font-size: 0.9em;
+        min-height: 50px;
+        padding: 8px;
+    }
+    
+    .controls {
+        gap: 8px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .game-layout {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .card-svg-container svg {
+        width: 105px;
+        height: 150px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackJack 🎰</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/Assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest/site.webmanifest">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header : Logo + boutons -->
+    <div class="header-top">
+        <div class="logo">
+            <img src="/Assets/images/BlackJackLOGO4.gif" alt="Logo Blackjack">
+            <div class="symbols">♠️ ♥️ ♦️ ♣️</div>
+        </div>
+        <div class="control-buttons">
+            <button id="mute-btn" class="btn-control" title="Activer/Désactiver le son">
+                <span>🔊</span>
+            </button>
+            <button id="fullscreen-btn" class="btn-control" title="Plein écran">
+                <span>⛶</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Zone du jeu -->
+    <div class="game-layout">
+        <div class="game-area">
+            <!-- Zone du croupier -->
+            <div class="player-section">
+                <h2>Croupier</h2>
+                <div id="dealer-cards" class="cards-container"></div>
+                <p class="score">Score: <span id="dealer-score">0</span></p>
+            </div>
+            
+            <!-- Zone du joueur -->
+            <div class="player-section">
+                <h2>Moi</h2>
+                <div id="player-cards" class="cards-container"></div>
+                <p class="score">Score: <span id="player-score">0</span></p>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <!-- Jetons -->
+            <div class="betting-section">
+                <div class="tokens-display">
+                    <h3>💰 Jetons: <span id="tokens-count">100</span></h3>
+                    <p class="bet-info">Mise actuelle: <span id="current-bet">0</span></p>
+                </div>
+                <div class="betting-controls">
+                    <div class="betting-row">
+                        <button id="bet-10" class="btn btn-bet">10</button>
+                        <button id="bet-20" class="btn btn-bet">20</button>
+                        <button id="bet-50" class="btn btn-bet">50</button>
+                    </div>
+                    <div class="betting-row betting-row-center">
+                        <button id="bet-100" class="btn btn-bet">100</button>
+                        <button id="bet-200" class="btn btn-bet">200</button>
+                    </div>
+                    <div class="betting-row">
+                        <button id="clear-bet" class="btn btn-bet-clear">
+                            <span style="font-size: 1.2em;">Clear 💫</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message de résultat -->
+            <div id="message" class="message"></div>
+            
+            <!-- Boutons du jeu -->
+            <div class="controls">
+                <button id="deal-btn" class="btn btn-primary">Distribuer</button>
+                <button id="hit-btn" class="btn btn-primary">Tire une carte</button>
+                <button id="stand-btn" class="btn btn-primary">Rester</button>
+                <button id="new-game-btn" class="btn btn-secondary">Nouvelle partie</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<script src="/script/script.js"></script>
+</body>
+</html>
